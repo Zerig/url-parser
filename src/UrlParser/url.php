@@ -192,7 +192,7 @@ class Url{
 
 	 * @times [int]		How many time
 	 */
-	public function swap($){
+	public function swap($times = 1){
 		for($i = 0; $i < $times; $i++){
 			array_shift($this->path);
 		}
