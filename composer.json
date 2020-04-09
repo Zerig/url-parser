@@ -19,7 +19,6 @@
 		"zerig/url-parser": "dev-master"
     },
     "autoload": {
-		"files": ["src/UrlParser/Url.php"],
         "psr-4": {
             "UrlParser\\": "src/"
         }
