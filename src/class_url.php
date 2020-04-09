@@ -1,4 +1,5 @@
 <?php
+namespace UrlParser;
 // !!!!!USE:::::  $GLOBALS["server_root"]
 if(!isset($GLOBALS["server_root"])) $GLOBALS["server_root"] = new Url("");
 
@@ -180,6 +181,18 @@ class Url{
 	 * @times [int]		How many time
 	 */
 	public function shift($times = 1){
+		for($i = 0; $i < $times; $i++){
+			array_shift($this->path);
+		}
+	}
+
+
+	/* PUSH
+	 * remove first part of url PATH
+
+	 * @times [int]		How many time
+	 */
+	public function swap($){
 		for($i = 0; $i < $times; $i++){
 			array_shift($this->path);
 		}
