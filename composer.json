@@ -20,7 +20,8 @@
     },
     "autoload": {
         "psr-4": {
-            "UrlParser\\Url\\": "src/"
+			"Monolog\\": "src/",
+            "Vendor\\UrlParser\\": ""
         }
     }
 }
