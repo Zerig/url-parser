@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "UrlParser\\url": "src/"
+            "Foo\\UrlParser\\Url": "src/"
         }
     }
 }
