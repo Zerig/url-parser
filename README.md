@@ -271,7 +271,10 @@ $GLOBALS["url"]->getString() => "www.web.cz/root/aaa/bbb/a.html"
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
 $GLOBALS["url"]->removePath(["aaa", "bbb"]);
 $GLOBALS["url"]->getString() => "www.web.cz/root/a.html"
+```
 
+### removeQuery($key_array)
+```php
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html?member=me&age=15");
 $GLOBALS["url"]->removeQuery(["member"]);
 $GLOBALS["url"]->getString() => "www.web.cz/root/aaa/bbb/a.html?age=15"
