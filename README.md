@@ -31,10 +31,10 @@ Remove last part of url PATH. NOT just print, but REMOVE!!!
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
 getString() => "http://www.web.cz/aaa/bbb/a.html"
 
-$GLOBALS["url"].pop();
+$GLOBALS["url"]->pop();
 getString() => "http://www.web.cz/aaa/bbb"
 
-$GLOBALS["url"].pop(3);
+$GLOBALS["url"]->pop(3);
 getString() => "http://www.web.cz"
 ```
 
@@ -68,5 +68,20 @@ getString() => "http://www.web.cz/aaa/bbb/a.html"
 
 $GLOBALS["url"].swap("aaa", "ccc");
 getString() => "http://www.web.cz/ccc/bbb/a.html"
+
+```
+
+
+
+
+## getScheme($exp)
+$exp [string]	In which form do we want export<br>
+getScheme() / getScheme("string") / getScheme("array")
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
+getString() => "http://www.web.cz/aaa/bbb/a.html"
+
+$GLOBALS["url"]->getPath() => "ccc/bbb/a.html"
 
 ```
