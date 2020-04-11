@@ -78,15 +78,15 @@ getString() => "http://www.web.cz/ccc/bbb/a.html"
 $exp [string]	In which form do we want export<br>
 getScheme() / getScheme("string") / getScheme("array")
 
-"http://www.web.cz/aaa/bbb/c.html"
+```php
+"http://web.cz/aaa/bbb/c.html"
+```
 - **getScheme()** - get scheme part: "http"
-- **getHost()** - get Host part: "www.web.cz"
+- **getHost()** - get Host part: "web.cz"
 - **getRoot()** - get Root part: ["aaa"]
 - **getPath()** - get Path part: ["bbb", "a.html"]
 - **getQuery()** - get Query part: ["member" => "me", "age" => "15"]
 - **getFragment()** - get hastag part: "hashtag"
-
-- getString()
 
 ```php
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
