@@ -4,7 +4,10 @@
 
 ```php
 $GLOBALS["server_root"] = new \UrlParser\Url("root");		// set root folder as ROOT
+// BOTH wariant are possile ↓
 $GLOBALS["url"] = new \UrlParser\Url(["http", "/www.web.cz/root", "/aaa/bbb", "a.html", "?member=me&age=15", "#hashtag"]);
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb//a.html?member=me&age=15#hashtag");
+// during constructing URL obj, multiple slashes are transform to ONE
 
 $GLOBALS["url"]->getScheme("string") 	=> "http"
 $GLOBALS["url"]->getHost("string") 	=> "www.web.cz"
@@ -57,10 +60,10 @@ Remove first part of url PATH. NOT just print, but REMOVE!!!
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
 $GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 
-$GLOBALS["url"].shift();
+$GLOBALS["url"]->shift();
 $GLOBALS["url"]->getString() => "http://www.web.cz/bbb/a.html"
 
-$GLOBALS["url"].shift(3);
+$GLOBALS["url"]->shift(3);
 $GLOBALS["url"]->getString() => "http://www.web.cz"
 ```
 
@@ -206,6 +209,8 @@ $GLOBALS["url"]->getPath("string") => "aaa/bbb/a/ccc/ddd"
 $GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a/ccc/ddd"
 
 ```
+
+
 ## beforePath($add_part)
 $add_part [string | array of strings]
 add items to ROOT part.
@@ -216,5 +221,25 @@ $GLOBALS["url"]->beforePath(["ccc", "ddd"]);
 
 $GLOBALS["url"]->getPath("string") => "ccc/ddd/aaa/bbb/a.html"
 $GLOBALS["url"]->getString() => "http://www.web.cz/root/ccc/ddd/aaa/bbb/a.html"
+
+```
+
+
+## addQuery($add_part)
+$add_part [key array]
+add items to ROOT part.
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->addQuery(["name" => "jerome", "age=15"]);
+
+$GLOBALS["url"]->getQuery("string") => "?name=jerome&age=15"
+$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html?name=jerome&age=15"
+
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html?member=me");
+$GLOBALS["url"]->addQuery(["name" => "jerome", "age=15"]);
+
+$GLOBALS["url"]->getQuery("string") => "?member=me&name=jerome&age=15"
+$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html?member=me&name=jerome&age=15"
 
 ```
