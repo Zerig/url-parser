@@ -80,7 +80,7 @@ class Url{
 	/* set PATH
 	 * @path [string]	"/aaa/bbb/file.html"
 	 */
-	public function setPath($path){
+	private function setPath($path){
 		// remove first "/" if exist
 		if(substr($path, 0, 1) == "/") $path = substr($path, 1);
 		$this->path = explode("/", $path);
@@ -92,7 +92,7 @@ class Url{
 	 * server_root set into PATH
 	 * PATH will be smaller
 	 */
-	public function setRoot(){
+	private function setRoot(){
 		if(isset($GLOBALS["server_root"])){
 			$server_root = clone $GLOBALS["server_root"];
 
@@ -138,7 +138,7 @@ class Url{
 
 	 * @query [string]
 	 */
-	public function setQuery($query){
+	private function setQuery($query){
 		$query = explode("&", $query);
 
 		foreach($query as $q){
