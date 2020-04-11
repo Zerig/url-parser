@@ -135,3 +135,42 @@ $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
 $GLOBALS["url"]->getDepth() => 3
 
 ```
+
+
+## linkRoot()
+return path, which return this url to root
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->linkRoot() => "../../"
+
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
+$GLOBALS["url"]->linkRoot() => "../../../"
+
+```
+
+
+## addRoot($add_part)
+$add_part [string | array of strings]
+add items to ROOT part.
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->addRoot(["rrr", "sss"]);
+
+$GLOBALS["url"]->getRoot("string") => "root/rrr/sss"
+$GLOBALS["url"]->getString() => "http://www.web.cz/root/rrr/sss/aaa/bbb/a.html"
+
+```
+## beforeRoot($add_part)
+$add_part [string | array of strings]
+add items to ROOT part.
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->beforeRoot(["rrr", "sss"]);
+
+$GLOBALS["url"]->getRoot("string") => "rrr/sss/root"
+$GLOBALS["url"]->getString() => "http://www.web.cz/rrr/sss/root/aaa/bbb/a.html"
+
+```
