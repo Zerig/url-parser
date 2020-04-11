@@ -187,14 +187,15 @@ class Url{
 	}
 
 
-	/* PUSH
-	 * remove first part of url PATH
+	/* SWAP
+	 * replace URL PATH part for another
 
-	 * @times [int]		How many time
+	 * @from [string]
+	 * @to [string]
 	 */
-	public function swap($){
-		for($i = 0; $i < $times; $i++){
-			array_shift($this->path);
+	public function swap($from, $to){
+		for($i = 0; $i < count($this->path); $i++){
+			if($this->path[$i] == $from) $this->path[$i] = $to;
 		}
 	}
 
@@ -285,6 +286,8 @@ class Url{
 	}
 
 
+
+
 	public function hasFile(){
 		return strpos(end($this->path), ".") !== false;
 	}
@@ -319,6 +322,54 @@ class Url{
 
 
 
+
+	public function addPath($add_part){
+		$string = self::makeItString($add_part);
+		$array = explode("/", $string);
+
+		if(self::hasFile()){
+			$i = count($this->path) - 1;
+			$array_file = explode(".", $this->path[$i]);
+			$this->path[$i] = $array_file[0];
+
+			if(strpos(end($array), ".") === false){
+				$array[count($array) - 1] .= ".".$array_file[1];
+			}
+		}
+
+		foreach($array as $part){
+			$this->path[] = $part;
+		}
+	}
+
+	public function addQuery($add_part){
+		foreach($add_part as $key => $val){
+			$this->query[$key] = $val;
+		}
+	}
+
+
+
+
+
+
+
+	public function beforePath($add_part){
+		$string = self::makeItString($add_part);
+		$array = explode("/", $string);
+
+		foreach($this->path as $part){
+			$array[] = $part;
+		}
+		$this->path = $array;
+	}
+
+
+
+
+
+
+
 	/* remove ALL URL PARTS
 	 * removeQuery(["name", "age"])
 
@@ -327,17 +378,30 @@ class Url{
 	public function removeScheme(){		$this->scheme = null;	}
 	public function removeHost(){		$this->host = null;	}
 	public function removeRoot(){		$this->root = null;	}
-	public function removePath(){		$this->path = null;	}
 	public function removeFragment(){	$this->fragment = null;	}
+
+
+	public function removePath($path_part = null){
+		if(empty($path_part)) $this->path = null;
+		if(!empty($path_part)){
+			$string_url = self::makeItString($path_part);
+			$string_url = str_replace($string_url, "", self::getPath("string"));
+			$string_url = self::makeItString($string_url);
+
+			self::setPath($string_url);
+		}
+	}
+
 
 	public function removeQuery($key_array = []){
 		if(empty($key_array))		$this->query = null;
 		if(!is_array($key_array))	$key_array = [$key_array];
 
-		$query = $this->query;
-		foreach($query as $key => $val){
-			foreach($key_array as $remove_key){
-				if($remove_key == $key)	unset($this->query[$key]);	// remove item
+		if(!empty($this->query)){
+			foreach($this->query as $key => $val){
+				foreach($key_array as $remove_key){
+					if($remove_key == $key)	unset($this->query[$key]);	// remove item
+				}
 			}
 		}
 
