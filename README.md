@@ -7,10 +7,10 @@ $GLOBALS["server_root"] = new \UrlParser\Url("root");		// set root folder as ROO
 $GLOBALS["url"] = new \UrlParser\Url(["http", "/www.web.cz/root", "/aaa/bbb", "a.html", "?member=me&age=15", "#hashtag"]);
 
 $GLOBALS["url"]->getScheme("string") 	=> "http"
-$GLOBALS["url"]->getHost("string") 		=> "www.web.cz"
-$GLOBALS["url"]->getRoot("string") 		=> "root"
-$GLOBALS["url"]->getPath("string") 		=> "aaa/bbb/a.html"
-$GLOBALS["url"]->getQuery("string") 	=> "?member=me&age=15"
+$GLOBALS["url"]->getHost("string") 	=> "www.web.cz"
+$GLOBALS["url"]->getRoot("string") 	=> "root"
+$GLOBALS["url"]->getPath("string") 	=> "aaa/bbb/a.html"
+$GLOBALS["url"]->getQuery("string") => "?member=me&age=15"
 $GLOBALS["url"]->getFragment("string") 	=> "hashtag"
 ```
 
