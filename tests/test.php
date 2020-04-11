@@ -111,6 +111,12 @@ $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 $GLOBALS["url"]->removePath();
 echo "removePath() => URL: ".$GLOBALS["url"]->getString()."<br>";
+echo "<br>";
+
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
+echo "URL: ".$GLOBALS["url"]->getString()."<br>";
+$GLOBALS["url"]->removePath(["aaa", "bbb"]);
+echo "removePath(['aaa', 'bbb']) => URL: ".$GLOBALS["url"]->getString()."<br>";
 
 echo "<br>---------------------------------------------<br><br>";
 

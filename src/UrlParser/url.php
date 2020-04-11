@@ -5,12 +5,12 @@ if(!isset($GLOBALS["server_root"])) $GLOBALS["server_root"] = new Url("");
 
 class Url{
 	// http://localhost/web/o-nas/kontakt.html?clen=ja&vek=15#nadpis
-	private $scheme;	// "http"
-	private $host;		// "localhost"
-	private $root;		// ["web"]
-	private $path;		// ["o-nas", "kontakt.html"]
-	private $query;		// ["clen" => "ja", "vek" => "15"]
-	private $fragment;	// "nadpis"
+	public $scheme;		// "http"
+	public $host;		// "localhost"
+	public $root;		// ["web"]
+	public $path;		// ["o-nas", "kontakt.html"]
+	public $query;		// ["clen" => "ja", "vek" => "15"]
+	public $fragment;	// "nadpis"
 
 	/**
 	 * CONNECT input into one correct URL
@@ -80,7 +80,7 @@ class Url{
 	/* set PATH
 	 * @path [string]	"/aaa/bbb/file.html"
 	 */
-	private function setPath($path){
+	public function setPath($path){
 		// remove first "/" if exist
 		if(substr($path, 0, 1) == "/") $path = substr($path, 1);
 		$this->path = explode("/", $path);
@@ -92,7 +92,7 @@ class Url{
 	 * server_root set into PATH
 	 * PATH will be smaller
 	 */
-	private function setRoot(){
+	public function setRoot(){
 		if(isset($GLOBALS["server_root"])){
 			$server_root = clone $GLOBALS["server_root"];
 
@@ -138,7 +138,7 @@ class Url{
 
 	 * @query [string]
 	 */
-	private function setQuery($query){
+	public function setQuery($query){
 		$query = explode("&", $query);
 
 		foreach($query as $q){
@@ -378,8 +378,20 @@ class Url{
 	public function removeScheme(){		$this->scheme = null;	}
 	public function removeHost(){		$this->host = null;	}
 	public function removeRoot(){		$this->root = null;	}
-	public function removePath(){		$this->path = null;	}
 	public function removeFragment(){	$this->fragment = null;	}
+
+
+	public function removePath($path_part = null){
+		if(empty($path_part)) $this->path = null;
+		if(!empty($path_part)){
+			$string_url = self::makeItString($path_part);
+			$string_url = str_replace($string_url, "", self::getPath("string"));
+			$string_url = self::makeItString($string_url);
+
+			self::setPath($string_url);
+		}
+	}
+
 
 	public function removeQuery($key_array = []){
 		if(empty($key_array))		$this->query = null;

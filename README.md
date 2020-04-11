@@ -4,7 +4,7 @@
 
 ```php
 $GLOBALS["server_root"] = new \UrlParser\Url("root");		// set root folder as ROOT
-// BOTH wariant are possile ↓
+// BOTH variant are possile ↓
 $GLOBALS["url"] = new \UrlParser\Url(["http", "/www.web.cz/root", "/aaa/bbb", "a.html", "?member=me&age=15", "#hashtag"]);
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb//a.html?member=me&age=15#hashtag");
 // during constructing URL obj, multiple slashes are transform to ONE
@@ -242,4 +242,37 @@ $GLOBALS["url"]->addQuery(["name" => "jerome", "age=15"]);
 $GLOBALS["url"]->getQuery("string") => "?member=me&name=jerome&age=15"
 $GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html?member=me&name=jerome&age=15"
 
+```
+
+
+
+
+## remove...()
+$add_part [key array]
+add items to ROOT part.
+
+- **removeScheme()** - remove scheme part: "http"
+- **removeHost()** - remove Host part: "web.cz"
+- **removeRoot()** - remove Root part: ["aaa"]
+- **removePath()** - remove Path part: ["bbb", "a.html"]
+- **removeQuery()** - remove Query part: ["member" => "me", "age" => "15"]
+- **removeFragment()** - remove hastag part: "hashtag"
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html?member=me&age=15");
+$GLOBALS["url"]->removeScheme();
+$GLOBALS["url"]->removeQuery();
+
+$GLOBALS["url"]->getString() => "www.web.cz/root/aaa/bbb/a.html"
+```
+
+### removePath($path_part)
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->removePath(["aaa", "bbb"]);
+$GLOBALS["url"]->getString() => "www.web.cz/root/a.html"
+
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html?member=me&age=15");
+$GLOBALS["url"]->removeQuery(["member"]);
+$GLOBALS["url"]->getString() => "www.web.cz/root/aaa/bbb/a.html?age=15"
 ```
