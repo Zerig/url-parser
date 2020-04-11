@@ -10,7 +10,7 @@ $GLOBALS["url"]->getScheme("string") 	=> "http"
 $GLOBALS["url"]->getHost("string") 	=> "www.web.cz"
 $GLOBALS["url"]->getRoot("string") 	=> "root"
 $GLOBALS["url"]->getPath("string") 	=> "aaa/bbb/a.html"
-$GLOBALS["url"]->getQuery("string") => "?member=me&age=15"
+$GLOBALS["url"]->getQuery("string") 	=> "?member=me&age=15"
 $GLOBALS["url"]->getFragment("string") 	=> "hashtag"
 ```
 
