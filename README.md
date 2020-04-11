@@ -87,7 +87,9 @@ $GLOBALS["url"]->getString() => "http://www.web.cz/ccc/bbb/a.html"
 
 ## get....($exp)
 $exp [string]	In which form do we want export<br>
-getScheme() / getScheme("string") / getScheme("array")
+1. getScheme() - how is variable saved [string | array of string | key array]
+2. getScheme("string") - how could be written in URL
+3. getScheme("array") - in array [array of string | key array]
 
 ```php
 "http://web.cz/aaa/bbb/c.html"
