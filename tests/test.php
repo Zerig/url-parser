@@ -141,44 +141,31 @@ echo "<br>---------------------------------------------<br><br>";
 echo "<br>---------------------------------------------<br><br>";
 
 
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
-echo "URL: ".$GLOBALS["url"]->getString()."<br>";
-$GLOBALS["url"]->beforeRoot('rrr');
-echo "addRoot('rrr') => ROOT: ".$GLOBALS["url"]->getRoot("string")."<br>";
-echo "URL: ".$GLOBALS["url"]->getString()."<br>";
-echo "<br>";
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
-echo "URL: ".$GLOBALS["url"]->getString()."<br>";
-$GLOBALS["url"]->beforeRoot(['rrr', 'sss']);
-echo "addRoot(['rrr', 'sss']) => ROOT: ".$GLOBALS["url"]->getRoot("string")."<br>";
-echo "URL: ".$GLOBALS["url"]->getString()."<br>";
-echo "<br>---------------------------------------------<br><br>";
-
 
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
-$GLOBALS["url"]->beforePath('ccc');
+$GLOBALS["url"]->addPath('ccc');
 echo "addRoot('ccc') => PATH: ".$GLOBALS["url"]->getPath("string")."<br>";
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 echo "<br>";
 
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a");
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
-$GLOBALS["url"]->beforePath('ccc');
+$GLOBALS["url"]->addPath('ccc');
 echo "addRoot('ccc') => PATH: ".$GLOBALS["url"]->getPath("string")."<br>";
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 echo "<br>";
 
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a");
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
-$GLOBALS["url"]->beforePath(['ccc', 'ddd.html']);
+$GLOBALS["url"]->addPath(['ccc', 'ddd.html']);
 echo "addRoot(['ccc', 'ddd.html']) => PATH: ".$GLOBALS["url"]->getPath("string")."<br>";
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 echo "<br>";
 
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
-$GLOBALS["url"]->beforePath(['ccc', 'ddd']);
+$GLOBALS["url"]->addPath(['ccc', 'ddd']);
 echo "addRoot(['ccc', 'ddd']) => PATH: ".$GLOBALS["url"]->getPath("string")."<br>";
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 echo "<br>---------------------------------------------<br><br>";
@@ -187,12 +174,7 @@ echo "<br>---------------------------------------------<br><br>";
 
 
 
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
-echo "URL: ".$GLOBALS["url"]->getString()."<br>";
-$GLOBALS["url"]->beforeRoot('rrr');
-echo "beforePath('rrr') => PATH: ".$GLOBALS["url"]->getPath("string")."<br>";
-echo "URL: ".$GLOBALS["url"]->getString()."<br>";
-echo "<br>";
+
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 $GLOBALS["url"]->beforePath(['rrr', 'sss']);

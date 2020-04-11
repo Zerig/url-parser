@@ -111,7 +111,10 @@ get the whole URL in string format.
 
 ```php
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
+$GLOBALS["url"]->addPath("file");					// add PATH URL
+$GLOBALS["url"]->addQuery(["name" => "jerome"]);	// add Query in URL
+
+$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a/file.html?name=jerome"
 
 ```
 

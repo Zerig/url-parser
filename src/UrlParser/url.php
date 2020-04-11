@@ -323,14 +323,6 @@ class Url{
 
 
 
-	public function addRoot($add_part){
-		$string = self::makeItString($add_part);
-		$array = explode("/", $string);
-
-		foreach($array as $part){
-			$this->root[] = $part;
-		}
-	}
 	public function addPath($add_part){
 		$string = self::makeItString($add_part);
 		$array = explode("/", $string);
@@ -362,16 +354,6 @@ class Url{
 
 
 
-
-	public function beforeRoot($add_part){
-		$string = self::makeItString($add_part);
-		$array = explode("/", $string);
-
-		foreach($this->root as $part){
-			$array[] = $part;
-		}
-		$this->root = $array;
-	}
 	public function beforePath($add_part){
 		$string = self::makeItString($add_part);
 		$array = explode("/", $string);
