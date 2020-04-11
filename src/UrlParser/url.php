@@ -187,14 +187,15 @@ class Url{
 	}
 
 
-	/* PUSH
-	 * remove first part of url PATH
+	/* SWAP
+	 * replace URL PATH part for another
 
-	 * @times [int]		How many time
+	 * @from [string]
+	 * @to [string]
 	 */
-	public function swap($times = 1){
-		for($i = 0; $i < $times; $i++){
-			array_shift($this->path);
+	public function swap($from, $to){
+		for($i = 0; $i < count($this->path); $i++){
+			if($this->path[$i] == $from) $this->path[$i] = $to;
 		}
 	}
 
