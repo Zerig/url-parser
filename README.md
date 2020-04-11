@@ -14,7 +14,7 @@ This method also erase double slashes.
 makeItString("http://www.web.cz//aaa/bbb/a.html")
 makeItString(["http", "/www.web.cz/", "/aaa/bbb", "a.html"])
 
-=> http://www.web.cz/aaa/bbb/a.html
+getString() => "http://www.web.cz/aaa/bbb/a.html"
 ```
 
 
@@ -28,11 +28,11 @@ Remove last part of url PATH. NOT just print, but REMOVE!!!
 
 ```php
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
-=> http://www.web.cz/aaa/bbb/a.html
+getString() => "http://www.web.cz/aaa/bbb/a.html"
 
 $GLOBALS["url"].pop();
-=> http://www.web.cz/aaa/bbb
+getString() => "http://www.web.cz/aaa/bbb"
 
 $GLOBALS["url"].pop(3);
-=> http://www.web.cz
+getString() => "http://www.web.cz"
 ```
