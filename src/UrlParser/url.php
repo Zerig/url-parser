@@ -5,12 +5,12 @@ if(!isset($GLOBALS["server_root"])) $GLOBALS["server_root"] = new Url("");
 
 class Url{
 	// http://localhost/web/o-nas/kontakt.html?clen=ja&vek=15#nadpis
-	public $scheme;		// "http"
-	public $host;		// "localhost"
-	public $root;		// ["web"]
-	public $path;		// ["o-nas", "kontakt.html"]
-	public $query;		// ["clen" => "ja", "vek" => "15"]
-	public $fragment;	// "nadpis"
+	private $scheme;	// "http"
+	private $host;		// "localhost"
+	private $root;		// ["web"]
+	private $path;		// ["o-nas", "kontakt.html"]
+	private $query;		// ["clen" => "ja", "vek" => "15"]
+	private $fragment;	// "nadpis"
 
 	/**
 	 * CONNECT input into one correct URL
