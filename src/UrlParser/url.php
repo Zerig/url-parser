@@ -286,6 +286,8 @@ class Url{
 	}
 
 
+
+
 	public function hasFile(){
 		return strpos(end($this->path), ".") !== false;
 	}

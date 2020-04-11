@@ -29,13 +29,13 @@ Remove last part of url PATH. NOT just print, but REMOVE!!!
 
 ```php
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
-getString() => "http://www.web.cz/aaa/bbb/a.html"
+$GLOBALS["url"]->getString() => "http://www.web.cz/aaa/bbb/a.html"
 
 $GLOBALS["url"]->pop();
-getString() => "http://www.web.cz/aaa/bbb"
+$GLOBALS["url"]->getString() => "http://www.web.cz/aaa/bbb"
 
 $GLOBALS["url"]->pop(3);
-getString() => "http://www.web.cz"
+$GLOBALS["url"]->getString() => "http://www.web.cz"
 ```
 
 
@@ -47,13 +47,13 @@ Remove first part of url PATH. NOT just print, but REMOVE!!!
 
 ```php
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
-getString() => "http://www.web.cz/aaa/bbb/a.html"
+$GLOBALS["url"]->getString() => "http://www.web.cz/aaa/bbb/a.html"
 
 $GLOBALS["url"].shift();
-getString() => "http://www.web.cz/bbb/a.html"
+$GLOBALS["url"]->getString() => "http://www.web.cz/bbb/a.html"
 
 $GLOBALS["url"].shift(3);
-getString() => "http://www.web.cz"
+$GLOBALS["url"]->getString() => "http://www.web.cz"
 ```
 
 
@@ -64,10 +64,10 @@ Change one part of URL PATH for a new one.
 
 ```php
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
-getString() => "http://www.web.cz/aaa/bbb/a.html"
+$GLOBALS["url"]->getString() => "http://www.web.cz/aaa/bbb/a.html"
 
 $GLOBALS["url"].swap("aaa", "ccc");
-getString() => "http://www.web.cz/ccc/bbb/a.html"
+$GLOBALS["url"]->getString() => "http://www.web.cz/ccc/bbb/a.html"
 
 ```
 
@@ -90,8 +90,30 @@ getScheme() / getScheme("string") / getScheme("array")
 
 ```php
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
-getString() => "http://www.web.cz/aaa/bbb/a.html"
+$GLOBALS["url"]->getString() => "http://www.web.cz/aaa/bbb/a.html"
 
 $GLOBALS["url"]->getPath() => "ccc/bbb/a.html"
+
+```
+
+
+
+## getString()
+get the whole URL in string format.
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
+$GLOBALS["url"]->getString() => "http://www.web.cz/aaa/bbb/a.html"
+
+```
+
+
+## hasFile()
+return 1 if the URL is ending with file: ".../a.html"<br>
+return 0 if the URL is ending onn folder: ".../a"
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
+$GLOBALS["url"]->hasFile() => "http://www.web.cz/aaa/bbb/a.html"
 
 ```
