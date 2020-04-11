@@ -4,7 +4,14 @@
 
 ```php
 $GLOBALS["server_root"] = new \UrlParser\Url("root");		// set root folder as ROOT
-$GLOBALS["url"] = new \UrlParser\Url(["http", "/www.web.cz/root", "/aaa/bbb", "a.html"]);
+$GLOBALS["url"] = new \UrlParser\Url(["http", "/www.web.cz/root", "/aaa/bbb", "a.html", "?member=me&age=15", "#hashtag"]);
+
+$GLOBALS["url"]->getScheme("string") 	=> "http"
+$GLOBALS["url"]->getHost("string") 		=> "www.web.cz"
+$GLOBALS["url"]->getRoot("string") 		=> "root"
+$GLOBALS["url"]->getPath("string") 		=> "aaa/bbb/a.html"
+$GLOBALS["url"]->getQuery("string") 	=> "?member=me&age=15"
+$GLOBALS["url"]->getFragment("string") 	=> "hashtag"
 ```
 
 ## makeItString($url_path)
@@ -172,5 +179,39 @@ $GLOBALS["url"]->beforeRoot(["rrr", "sss"]);
 
 $GLOBALS["url"]->getRoot("string") => "rrr/sss/root"
 $GLOBALS["url"]->getString() => "http://www.web.cz/rrr/sss/root/aaa/bbb/a.html"
+
+```
+
+
+
+
+## addPath($add_part)
+$add_part [string | array of strings]
+add items to ROOT part.
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->addPath(["ccc", "ddd"]);
+
+$GLOBALS["url"]->getPath("string") => "aaa/bbb/a/ccc/ddd.html"
+$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a/ccc/ddd.html"
+
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
+$GLOBALS["url"]->addPath(["ccc", "ddd"]);
+
+$GLOBALS["url"]->getPath("string") => "aaa/bbb/a/ccc/ddd"
+$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a/ccc/ddd"
+
+```
+## beforePath($add_part)
+$add_part [string | array of strings]
+add items to ROOT part.
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->beforePath(["ccc", "ddd"]);
+
+$GLOBALS["url"]->getPath("string") => "ccc/ddd/aaa/bbb/a.html"
+$GLOBALS["url"]->getString() => "http://www.web.cz/root/ccc/ddd/aaa/bbb/a.html"
 
 ```
