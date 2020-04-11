@@ -322,6 +322,72 @@ class Url{
 
 
 
+
+	public function addRoot($add_part){
+		$string = self::makeItString($add_part);
+		$array = explode("/", $string);
+
+		foreach($array as $part){
+			$this->root[] = $part;
+		}
+	}
+	public function addPath($add_part){
+		$string = self::makeItString($add_part);
+		$array = explode("/", $string);
+
+		if(self::hasFile()){
+			$i = count($this->path) - 1;
+			$array_file = explode(".", $this->path[$i]);
+			$this->path[$i] = $array_file[0];
+
+			if(strpos(end($array), ".") === false){
+				$array[count($array) - 1] .= ".".$array_file[1];
+			}
+		}
+
+		foreach($array as $part){
+			$this->path[] = $part;
+		}
+	}
+
+	public function addQuery($add_part){
+		foreach($add_part as $key => $val){
+			$this->query[$key] = $val;
+		}
+	}
+
+
+
+
+
+
+
+
+	public function beforeRoot($add_part){
+		$string = self::makeItString($add_part);
+		$array = explode("/", $string);
+
+		foreach($this->root as $part){
+			$array[] = $part;
+		}
+		$this->root = $array;
+	}
+	public function beforePath($add_part){
+		$string = self::makeItString($add_part);
+		$array = explode("/", $string);
+
+		foreach($this->path as $part){
+			$array[] = $part;
+		}
+		$this->path = $array;
+	}
+
+
+
+
+
+
+
 	/* remove ALL URL PARTS
 	 * removeQuery(["name", "age"])
 
@@ -337,10 +403,11 @@ class Url{
 		if(empty($key_array))		$this->query = null;
 		if(!is_array($key_array))	$key_array = [$key_array];
 
-		$query = $this->query;
-		foreach($query as $key => $val){
-			foreach($key_array as $remove_key){
-				if($remove_key == $key)	unset($this->query[$key]);	// remove item
+		if(!empty($this->query)){
+			foreach($this->query as $key => $val){
+				foreach($key_array as $remove_key){
+					if($remove_key == $key)	unset($this->query[$key]);	// remove item
+				}
 			}
 		}
 

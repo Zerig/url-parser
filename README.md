@@ -3,7 +3,8 @@
 
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url(["http", "/www.web.cz/", "/aaa/bbb", "a.html"]);
+$GLOBALS["server_root"] = new \UrlParser\Url("root");		// set root folder as ROOT
+$GLOBALS["url"] = new \UrlParser\Url(["http", "/www.web.cz/root", "/aaa/bbb", "a.html"]);
 ```
 
 ## makeItString($url_path)
@@ -13,9 +14,9 @@ This method also erase double slashes.
 
 ```php
 makeItString("http://www.web.cz//aaa/bbb/a.html")
-makeItString(["http", "/www.web.cz/", "/aaa/bbb", "a.html"])
+makeItString(["http", "/www.web.cz/root", "/aaa/bbb", "a.html"])
 
-getString() => "http://www.web.cz/aaa/bbb/a.html"
+getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 ```
 
 
@@ -29,10 +30,10 @@ Remove last part of url PATH. NOT just print, but REMOVE!!!
 
 ```php
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
-$GLOBALS["url"]->getString() => "http://www.web.cz/aaa/bbb/a.html"
+$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 
 $GLOBALS["url"]->pop();
-$GLOBALS["url"]->getString() => "http://www.web.cz/aaa/bbb"
+$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb"
 
 $GLOBALS["url"]->pop(3);
 $GLOBALS["url"]->getString() => "http://www.web.cz"
@@ -46,8 +47,8 @@ $times [int]		How many time<br>
 Remove first part of url PATH. NOT just print, but REMOVE!!!
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
-$GLOBALS["url"]->getString() => "http://www.web.cz/aaa/bbb/a.html"
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 
 $GLOBALS["url"].shift();
 $GLOBALS["url"]->getString() => "http://www.web.cz/bbb/a.html"
@@ -63,8 +64,8 @@ $to [string]	changed to this<br>
 Change one part of URL PATH for a new one.
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
-$GLOBALS["url"]->getString() => "http://www.web.cz/aaa/bbb/a.html"
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 
 $GLOBALS["url"].swap("aaa", "ccc");
 $GLOBALS["url"]->getString() => "http://www.web.cz/ccc/bbb/a.html"
@@ -89,8 +90,8 @@ getScheme() / getScheme("string") / getScheme("array")
 - **getFragment()** - get hastag part: "hashtag"
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
-$GLOBALS["url"]->getString() => "http://www.web.cz/aaa/bbb/a.html"
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 
 $GLOBALS["url"]->getPath() => "ccc/bbb/a.html"
 
@@ -102,8 +103,8 @@ $GLOBALS["url"]->getPath() => "ccc/bbb/a.html"
 get the whole URL in string format.
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
-$GLOBALS["url"]->getString() => "http://www.web.cz/aaa/bbb/a.html"
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 
 ```
 
@@ -113,7 +114,24 @@ return 1 if the URL is ending with file: ".../a.html"<br>
 return 0 if the URL is ending onn folder: ".../a"
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
-$GLOBALS["url"]->hasFile() => "http://www.web.cz/aaa/bbb/a.html"
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->hasFile() => 1
+
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
+$GLOBALS["url"]->hasFile() => 0
+
+```
+
+
+
+## getDepth()
+return number of all folder from ROOT
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->getDepth() => 2
+
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
+$GLOBALS["url"]->getDepth() => 3
 
 ```
