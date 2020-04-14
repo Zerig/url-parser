@@ -5,12 +5,13 @@
 ```php
 $GLOBALS["server_root"] = new \UrlParser\Url("root");		// set root folder as ROOT
 // BOTH variant are possile ↓
+// during constructing URL obj, multiple slashes are transform to ONE
 $GLOBALS["url"] = new \UrlParser\Url(["http", "/www.web.cz/root", "/aaa/bbb", "a.html", "?member=me&age=15", "#hashtag"]);
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb//a.html?member=me&age=15#hashtag");
 
 // special possibility for TEMPORARY files
 $GLOBALS["url"] = new \UrlParser\Url('C:\xampp\tmp\php8C07.tmp', '\\');
-// during constructing URL obj, multiple slashes are transform to ONE
+
 
 $GLOBALS["url"]->getScheme("string") 	=> "http"
 $GLOBALS["url"]->getHost("string") 	=> "www.web.cz"
@@ -177,13 +178,11 @@ add items to ROOT part.
 ```php
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
 $GLOBALS["url"]->addPath(["ccc", "ddd"]);
-
 $GLOBALS["url"]->getPath("string") => "aaa/bbb/a/ccc/ddd.html"
 $GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a/ccc/ddd.html"
 
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
 $GLOBALS["url"]->addPath(["ccc", "ddd"]);
-
 $GLOBALS["url"]->getPath("string") => "aaa/bbb/a/ccc/ddd"
 $GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a/ccc/ddd"
 
