@@ -7,6 +7,9 @@ $GLOBALS["server_root"] = new \UrlParser\Url("root");		// set root folder as ROO
 // BOTH variant are possile ↓
 $GLOBALS["url"] = new \UrlParser\Url(["http", "/www.web.cz/root", "/aaa/bbb", "a.html", "?member=me&age=15", "#hashtag"]);
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb//a.html?member=me&age=15#hashtag");
+
+// special possibility for TEMPORARY files
+$GLOBALS["url"] = new \UrlParser\Url('C:\xampp\tmp\php8C07.tmp', '\\');
 // during constructing URL obj, multiple slashes are transform to ONE
 
 $GLOBALS["url"]->getScheme("string") 	=> "http"

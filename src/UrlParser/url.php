@@ -50,7 +50,7 @@ class Url{
 
 		foreach($url_array as $url_part){
 			if(is_array($url_part)) $merge_url_array = array_merge($merge_url_array, $url_part);
-			else  					$merge_url_array = array_merge($merge_url_array, explode("/", $url_part));
+			else  					$merge_url_array = array_merge($merge_url_array, explode('\\', $url_part));
 		}
 
 		$merge_url_array = array_filter($merge_url_array);	// Remove all empty values of array
@@ -218,7 +218,14 @@ class Url{
 
 		if($exp == null)			return $this->scheme;
 		if($exp == "array")			return [$this->scheme];
-		if($exp == "string")		return $this->scheme."://";
+		if($exp == "string"){
+			if($exp == "http" || $exp == "https" || $exp == "ftp" || $exp == "sftp"){
+									return $this->scheme."://";
+			}else{
+									return $this->scheme.":/";
+			}
+
+		}
 	}
 
 	public function getHost($exp = null){

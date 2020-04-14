@@ -8,6 +8,24 @@ echo '$GLOBALS["server_root"] = '.$GLOBALS["server_root"]->getString().'<br>';
 
 echo "<br>---------------------------------------------<br><br>";
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
+echo print_r($GLOBALS["url"])."<br>";
+echo "URL: ".$GLOBALS["url"]->getString()."<br>";
+echo "<br>";
+$GLOBALS["url"] = new \UrlParser\Url('s', '\\');
+echo print_r($GLOBALS["url"])."<br>";
+echo "URL: ".$GLOBALS["url"]->getString()."<br>";
+
+echo "<br>---------------------------------------------<br><br>";
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
+echo print_r($GLOBALS["url"])."<br>";
+echo "URL: ".$GLOBALS["url"]->getString()."<br>";
+echo "<br>";
+$GLOBALS["url"] = new \UrlParser\Url('C:\xampp\tmp\php2410.tmp');
+echo print_r($GLOBALS["url"])."<br>";
+echo "URL: ".$GLOBALS["url"]->getString()."<br>";
+
+echo "<br>---------------------------------------------<br><br>";
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 
 $GLOBALS["url"]->pop(2);
