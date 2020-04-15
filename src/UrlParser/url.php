@@ -327,7 +327,7 @@ class Url{
 	}
 
 	public function exist(){
-		return ( self::is_dir() || self::is_dir() );
+		return ( self::isDir() || self::isFile() );
 	}
 
 
