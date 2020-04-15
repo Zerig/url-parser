@@ -34,7 +34,7 @@ getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 ```
 
 
-
+<hr>
 
 
 
@@ -86,7 +86,7 @@ $GLOBALS["url"]->getString() => "http://www.web.cz/ccc/bbb/a.html"
 
 ```
 
-
+<hr>
 
 
 ## get....($exp)
@@ -128,20 +128,7 @@ $GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a/file.html?name
 ```
 
 
-## hasFile()
-return 1 if the URL is ending with file: ".../a.html"<br>
-return 0 if the URL is ending onn folder: ".../a"
-
-```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->hasFile() => 1
-
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
-$GLOBALS["url"]->hasFile() => 0
-
-```
-
-
+<hr>
 
 ## getDepth()
 return number of all folder from ROOT
@@ -168,7 +155,7 @@ $GLOBALS["url"]->linkRoot() => "../../../"
 
 ```
 
-
+<hr>
 
 
 ## addPath($add_part)
@@ -222,6 +209,20 @@ $GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html?member=me
 
 ```
 
+<hr>
+
+## hasFile()
+return 1 if the URL is ending with file: ".../a.html"<br>
+return 0 if the URL is ending onn folder: ".../a"
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->hasFile() => 1
+
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
+$GLOBALS["url"]->hasFile() => 0
+
+```
 
 ## isDir()
 check if URL exist as Folder
@@ -247,7 +248,7 @@ $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
 $GLOBALS["url"]->exist()	=> 1
 ```
 
-
+<hr>
 
 
 ## remove...()
