@@ -58,7 +58,6 @@ class Url{
 		}
 
 		$merge_url_array = array_filter($merge_url_array);	// Remove all empty values of array
-		//echo var_dump($merge_url_array);
 
 		// CONTROL if one of send url string contains http,...
 		foreach($merge_url_array as $url_part){
@@ -319,7 +318,17 @@ class Url{
 
 
 
+	public function isDir(){
+		return ( is_dir(self::getString()) );
+	}
 
+	public function isFile(){
+		return ( is_file(self::getString()) );
+	}
+
+	public function exist(){
+		return ( self::is_dir() || self::is_dir() );
+	}
 
 
 

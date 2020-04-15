@@ -223,6 +223,31 @@ $GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html?member=me
 ```
 
 
+## isDir()
+check if URL exist as Folder
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->isDir()	=> 0
+```
+
+## isFile()
+check if URL exist as File
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->isFile()	=> 1
+```
+
+## exist()
+check if URL exist as File/Folder
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->exist()	=> 1
+```
+
+
 
 
 ## remove...()
