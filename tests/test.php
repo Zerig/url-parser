@@ -245,3 +245,11 @@ $GLOBALS["url"]->addQuery(['color' => 'red', 'size' => 15]);
 echo "addQuery(['color' => 'red', 'size' => 15]) => QUERY: ".$GLOBALS["url"]->getQuery("string")."<br>";
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 echo "<br>---------------------------------------------<br><br>";
+
+
+
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
+echo "URL: ".$GLOBALS["url"]->getString()."<br>";
+$GLOBALS["url"]->removeExtension();
+echo "URL: ".$GLOBALS["url"]->getString()."<br>";
+echo "<br>---------------------------------------------<br><br>";

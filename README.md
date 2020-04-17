@@ -224,6 +224,17 @@ $GLOBALS["url"]->hasFile() => 0
 
 ```
 
+## removeExtension()
+If URL has extension => ".html" it will remove it from path
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->removeExtension();
+
+$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a"
+
+```
+
 ## isDir()
 check if URL exist as Folder
 

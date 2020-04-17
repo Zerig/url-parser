@@ -297,6 +297,16 @@ class Url{
 		return strpos(end($this->path), ".") !== false;
 	}
 
+
+	public function removeExtension(){
+		$name_array = explode(".", end($this->path));
+		array_pop($name_array);
+		$name = implode(".", $name_array);
+
+		$this->path[count($this->path)-1] = $name;
+	}
+	
+
 	public function getDepth(){
 		$depth = sizeof($this->path);
 
