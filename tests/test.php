@@ -8,6 +8,24 @@ echo '$GLOBALS["server_root"] = '.$GLOBALS["server_root"]->getString().'<br>';
 
 echo "<br>---------------------------------------------<br><br>";
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
+echo print_r($GLOBALS["url"])."<br>";
+echo "URL: ".$GLOBALS["url"]->getString()."<br>";
+echo "<br>";
+$GLOBALS["url"] = new \UrlParser\Url('s', '\\');
+echo print_r($GLOBALS["url"])."<br>";
+echo "URL: ".$GLOBALS["url"]->getString()."<br>";
+
+echo "<br>---------------------------------------------<br><br>";
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
+echo print_r($GLOBALS["url"])."<br>";
+echo "URL: ".$GLOBALS["url"]->getString()."<br>";
+echo "<br>";
+$GLOBALS["url"] = new \UrlParser\Url('C:\xampp\tmp\php2410.tmp', '\\');
+echo print_r($GLOBALS["url"])."<br>";
+echo "URL: ".$GLOBALS["url"]->getString()."<br>";
+
+echo "<br>---------------------------------------------<br><br>";
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 
 $GLOBALS["url"]->pop(2);
@@ -149,30 +167,31 @@ echo "<br>---------------------------------------------<br><br>";
 
 
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
-echo "URL: ".$GLOBALS["url"]->getString()."<br>";
+echo "URL3: ".$GLOBALS["url"]->getString()."<br>";
+echo print_r($GLOBALS["url"]);
 $GLOBALS["url"]->addPath('ccc');
-echo "addRoot('ccc') => PATH: ".$GLOBALS["url"]->getPath("string")."<br>";
+echo "addPath('ccc') => PATH: ".$GLOBALS["url"]->getPath("string")."<br>";
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 echo "<br>";
 
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a");
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 $GLOBALS["url"]->addPath('ccc');
-echo "addRoot('ccc') => PATH: ".$GLOBALS["url"]->getPath("string")."<br>";
+echo "addPath('ccc') => PATH: ".$GLOBALS["url"]->getPath("string")."<br>";
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 echo "<br>";
 
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a");
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 $GLOBALS["url"]->addPath(['ccc', 'ddd.html']);
-echo "addRoot(['ccc', 'ddd.html']) => PATH: ".$GLOBALS["url"]->getPath("string")."<br>";
+echo "addPath(['ccc', 'ddd.html']) => PATH: ".$GLOBALS["url"]->getPath("string")."<br>";
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 echo "<br>";
 
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 $GLOBALS["url"]->addPath(['ccc', 'ddd']);
-echo "addRoot(['ccc', 'ddd']) => PATH: ".$GLOBALS["url"]->getPath("string")."<br>";
+echo "addPath(['ccc', 'ddd']) => PATH: ".$GLOBALS["url"]->getPath("string")."<br>";
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 echo "<br>---------------------------------------------<br><br>";
 echo "<br>---------------------------------------------<br><br>";
@@ -224,5 +243,13 @@ $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 $GLOBALS["url"]->addQuery(['color' => 'red', 'size' => 15]);
 echo "addQuery(['color' => 'red', 'size' => 15]) => QUERY: ".$GLOBALS["url"]->getQuery("string")."<br>";
+echo "URL: ".$GLOBALS["url"]->getString()."<br>";
+echo "<br>---------------------------------------------<br><br>";
+
+
+
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html");
+echo "URL: ".$GLOBALS["url"]->getString()."<br>";
+$GLOBALS["url"]->removeExtension();
 echo "URL: ".$GLOBALS["url"]->getString()."<br>";
 echo "<br>---------------------------------------------<br><br>";

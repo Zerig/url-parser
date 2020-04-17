@@ -5,9 +5,13 @@
 ```php
 $GLOBALS["server_root"] = new \UrlParser\Url("root");		// set root folder as ROOT
 // BOTH variant are possile ↓
+// during constructing URL obj, multiple slashes are transform to ONE
 $GLOBALS["url"] = new \UrlParser\Url(["http", "/www.web.cz/root", "/aaa/bbb", "a.html", "?member=me&age=15", "#hashtag"]);
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb//a.html?member=me&age=15#hashtag");
-// during constructing URL obj, multiple slashes are transform to ONE
+
+// special possibility for TEMPORARY files
+$GLOBALS["url"] = new \UrlParser\Url('C:\xampp\tmp\php8C07.tmp', '\\');
+
 
 $GLOBALS["url"]->getScheme("string") 	=> "http"
 $GLOBALS["url"]->getHost("string") 	=> "www.web.cz"
@@ -30,7 +34,7 @@ getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 ```
 
 
-
+<hr>
 
 
 
@@ -82,7 +86,7 @@ $GLOBALS["url"]->getString() => "http://www.web.cz/ccc/bbb/a.html"
 
 ```
 
-
+<hr>
 
 
 ## get....($exp)
@@ -124,20 +128,7 @@ $GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a/file.html?name
 ```
 
 
-## hasFile()
-return 1 if the URL is ending with file: ".../a.html"<br>
-return 0 if the URL is ending onn folder: ".../a"
-
-```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->hasFile() => 1
-
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
-$GLOBALS["url"]->hasFile() => 0
-
-```
-
-
+<hr>
 
 ## getDepth()
 return number of all folder from ROOT
@@ -164,7 +155,7 @@ $GLOBALS["url"]->linkRoot() => "../../../"
 
 ```
 
-
+<hr>
 
 
 ## addPath($add_part)
@@ -174,13 +165,11 @@ add items to ROOT part.
 ```php
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
 $GLOBALS["url"]->addPath(["ccc", "ddd"]);
-
 $GLOBALS["url"]->getPath("string") => "aaa/bbb/a/ccc/ddd.html"
 $GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a/ccc/ddd.html"
 
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
 $GLOBALS["url"]->addPath(["ccc", "ddd"]);
-
 $GLOBALS["url"]->getPath("string") => "aaa/bbb/a/ccc/ddd"
 $GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a/ccc/ddd"
 
@@ -220,7 +209,57 @@ $GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html?member=me
 
 ```
 
+<hr>
 
+## hasFile()
+return 1 if the URL is ending with file: ".../a.html"<br>
+return 0 if the URL is ending onn folder: ".../a"
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->hasFile() => 1
+
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
+$GLOBALS["url"]->hasFile() => 0
+
+```
+
+## removeExtension()
+If URL has extension => ".html" it will remove it from path
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->removeExtension();
+
+$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a"
+
+```
+
+## isDir()
+check if URL exist as Folder
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->isDir()	=> 0
+```
+
+## isFile()
+check if URL exist as File
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->isFile()	=> 1
+```
+
+## exist()
+check if URL exist as File/Folder
+
+```php
+$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$GLOBALS["url"]->exist()	=> 1
+```
+
+<hr>
 
 
 ## remove...()

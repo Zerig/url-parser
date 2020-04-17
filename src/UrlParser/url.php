@@ -12,13 +12,17 @@ class Url{
 	public $query;		// ["clen" => "ja", "vek" => "15"]
 	public $fragment;	// "nadpis"
 
+	private $sign;		// char of directory separator => usualy "/"
+
 	/**
 	 * CONNECT input into one correct URL
 	 *
 	 * @param [array of string / string] $array_url 		// ["aaa/bbb/", "/ccc". "name.html"] or "aa/bb//ccc/name.html"
 	 * @return string 										// "aa/bb/ccc/name.html"
 	 */
-	public function __construct($url_path){
+	public function __construct($url_path, $sign = "/"){
+		$this->sign = $sign;
+
 		$url_path = self::makeItString($url_path);
 		$parse_url = parse_url($url_path);
 
@@ -50,7 +54,7 @@ class Url{
 
 		foreach($url_array as $url_part){
 			if(is_array($url_part)) $merge_url_array = array_merge($merge_url_array, $url_part);
-			else  					$merge_url_array = array_merge($merge_url_array, explode("/", $url_part));
+			else  					$merge_url_array = array_merge($merge_url_array, explode($this->sign, $url_part));
 		}
 
 		$merge_url_array = array_filter($merge_url_array);	// Remove all empty values of array
@@ -58,21 +62,15 @@ class Url{
 		// CONTROL if one of send url string contains http,...
 		foreach($merge_url_array as $url_part){
 			if(preg_match('(http|https|ftp|sftp)', $url_part) === 1){
-				$fin_url_array[] = (strpos($url_part, ":") === false)? $url_part.":/" : $url_part."/";
+				$fin_url_array[] = (strpos($url_part, ":") === false)? $url_part.":".$this->sign : $url_part.$this->sign;
 			}else{
 				$fin_url_array[] = $url_part;
 			}
 
 		}
 
-		return implode("/", $fin_url_array);
+		return implode($this->sign, $fin_url_array);
 	}
-
-
-
-
-
-
 
 
 
@@ -81,9 +79,9 @@ class Url{
 	 * @path [string]	"/aaa/bbb/file.html"
 	 */
 	public function setPath($path){
-		// remove first "/" if exist
-		if(substr($path, 0, 1) == "/") $path = substr($path, 1);
-		$this->path = explode("/", $path);
+		// remove first $this->sign if exist
+		if(substr($path, 0, 1) == $this->sign) $path = substr($path, 1);
+		$this->path = explode($this->sign, $path);
 	}
 
 
@@ -214,11 +212,18 @@ class Url{
 	 * @exp [string]
 	 */
 	public function getScheme($exp = null){
-		if(!isset($this->scheme)) 	return null;
+		if(!isset($this->scheme)) 	return null;	// When "http" doeasn exist return null
 
 		if($exp == null)			return $this->scheme;
 		if($exp == "array")			return [$this->scheme];
-		if($exp == "string")		return $this->scheme."://";
+		if($exp == "string"){
+			if($this->scheme == "http" || $this->scheme == "https" || $this->scheme == "ftp" || $this->scheme == "sftp"){
+									return $this->scheme.":".$this->sign.$this->sign;
+			}else{
+									return $this->scheme.":".$this->sign;
+			}
+
+		}
 	}
 
 	public function getHost($exp = null){
@@ -234,7 +239,7 @@ class Url{
 
 		if($exp == null)			return $this->root;
 		if($exp == "array")			return $this->root;
-		if($exp == "string")		return implode("/", $this->root);
+		if($exp == "string")		return implode($this->sign, $this->root);
 	}
 
 	public function getPath($exp = null){
@@ -242,7 +247,7 @@ class Url{
 
 		if($exp == null)			return $this->path;
 		if($exp == "array")			return $this->path;
-		if($exp == "string")		return implode("/", $this->path);
+		if($exp == "string")		return implode($this->sign, $this->path);
 	}
 
 	public function getQuery($exp = null){
@@ -292,6 +297,16 @@ class Url{
 		return strpos(end($this->path), ".") !== false;
 	}
 
+
+	public function removeExtension(){
+		$name_array = explode(".", end($this->path));
+		array_pop($name_array);
+		$name = implode(".", $name_array);
+
+		$this->path[count($this->path)-1] = $name;
+	}
+
+
 	public function getDepth(){
 		$depth = sizeof($this->path);
 
@@ -313,7 +328,17 @@ class Url{
 
 
 
+	public function isDir(){
+		return ( is_dir(self::getString()) );
+	}
 
+	public function isFile(){
+		return ( is_file(self::getString()) );
+	}
+
+	public function exist(){
+		return ( self::isDir() || self::isFile() );
+	}
 
 
 
@@ -325,7 +350,7 @@ class Url{
 
 	public function addPath($add_part){
 		$string = self::makeItString($add_part);
-		$array = explode("/", $string);
+		$array = explode($this->sign, $string);
 
 		if(self::hasFile()){
 			$i = count($this->path) - 1;
@@ -356,7 +381,7 @@ class Url{
 
 	public function beforePath($add_part){
 		$string = self::makeItString($add_part);
-		$array = explode("/", $string);
+		$array = explode($this->sign, $string);
 
 		foreach($this->path as $part){
 			$array[] = $part;
