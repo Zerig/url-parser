@@ -1,17 +1,17 @@
 {
     "name": "zerig/url-parser",
-    "type": "library",
     "description": "class of object which parse url and can work with it.",
+	"type": "library",
     "keywords": [
         "url parser",
         "url"
     ],
-    "license": "MIT",
+	"license": "MIT",
     "authors": [
         {
             "name": "Jeronym Pelikovsky",
             "email": "pelikovsky@gmail.com",
-            "role": "Developer"
+			"role": "Developer"
         }
     ],
     "require": {
