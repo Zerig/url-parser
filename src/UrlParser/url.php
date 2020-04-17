@@ -212,12 +212,12 @@ class Url{
 	 * @exp [string]
 	 */
 	public function getScheme($exp = null){
-		if(!isset($this->scheme)) 	return null;
+		if(!isset($this->scheme)) 	return null;	// When "http" doeasn exist return null
 
 		if($exp == null)			return $this->scheme;
 		if($exp == "array")			return [$this->scheme];
 		if($exp == "string"){
-			if($exp == "http" || $exp == "https" || $exp == "ftp" || $exp == "sftp"){
+			if($this->scheme == "http" || $this->scheme == "https" || $this->scheme == "ftp" || $this->scheme == "sftp"){
 									return $this->scheme.":".$this->sign.$this->sign;
 			}else{
 									return $this->scheme.":".$this->sign;
@@ -305,7 +305,7 @@ class Url{
 
 		$this->path[count($this->path)-1] = $name;
 	}
-	
+
 
 	public function getDepth(){
 		$depth = sizeof($this->path);
