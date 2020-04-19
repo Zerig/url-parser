@@ -12,7 +12,7 @@ class Url{
 	public $query;		// ["clen" => "ja", "vek" => "15"]
 	public $fragment;	// "nadpis"
 
-	private $sign;		// char of directory separator => usualy "/"
+	public $sign;		// char of directory separator => usualy "/"
 
 	/**
 	 * CONNECT input into one correct URL
