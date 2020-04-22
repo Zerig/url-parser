@@ -235,12 +235,12 @@ $GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a"
 
 ```
 
-## isDir()
+## isFolder()
 check if URL exist as Folder
 
 ```php
 $GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->isDir()	=> 0
+$GLOBALS["url"]->isFolder()	=> 0
 ```
 
 ## isFile()
