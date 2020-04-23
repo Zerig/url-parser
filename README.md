@@ -108,13 +108,15 @@ $exp [string]	In which form do we want export<br>
 ```php
 $url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
 $url->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
-
+```
+```php
 $url->getHost() => "www.web.cz"
 $url->getHost("string") => "www.web.cz"
 $url->getHost("array") => [
 	[0] => "www.web.cz"
 ]
-
+```
+```php
 $url->getPath() => => [
 	[0] => "ccc",
 	[1] => "bbb",
