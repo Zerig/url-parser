@@ -258,9 +258,10 @@ If URL has extension => ".html" it will remove it from path
 
 ```php
 $url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$url->removeExtension();
+$extension = $url->removeExtension();
 
 $url->getString() => "http://www.web.cz/root/aaa/bbb/a"
+$extension => "html"
 
 ```
 
@@ -305,22 +306,31 @@ add items to ROOT part.
 
 ```php
 $url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html?member=me&age=15");
-$url->removeScheme();
-$url->removeQuery();
+$remove_part = $url->removeScheme();
 
 $url->getString() => "www.web.cz/root/aaa/bbb/a.html"
+$remove_part => "http"
 ```
 
 ### removePath($path_part)
 ```php
 $url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$url->removePath(["aaa", "bbb"]);
+$remove_part = $url->removePath(["aaa", "bbb"]);
+
 $url->getString() => "www.web.cz/root/a.html"
+$remove_part = [
+	[0] => "aaa",
+	[1] => "bbb"
+]
 ```
 
 ### removeQuery($key_array)
 ```php
 $url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html?member=me&age=15");
-$url->removeQuery(["member"]);
+$remove_part = $url->removeQuery(["member"]);
+
 $url->getString() => "www.web.cz/root/aaa/bbb/a.html?age=15"
+$remove_part = [
+	["member"] => "me"
+]
 ```
