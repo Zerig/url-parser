@@ -13,12 +13,12 @@ $url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb//a.html?member=me&age=
 $url = new \UrlParser\Url('C:\xampp\tmp\php8C07.tmp', '\\');
 
 
-$url->getScheme("string") 	=> "http"
-$url->getHost("string") 	=> "www.web.cz"
-$url->getRoot("string") 	=> "root"
-$url->getPath("string") 	=> "aaa/bbb/a.html"
-$url->getQuery("string") 	=> "?member=me&age=15"
-$url->getFragment("string") 	=> "hashtag"
+$url->getScheme("string")   => "http"
+$url->getHost("string")     => "www.web.cz"
+$url->getRoot("string")     => "root"
+$url->getPath("string")     => "aaa/bbb/a.html"
+$url->getQuery("string")    => "?member=me&age=15"
+$url->getFragment("string") => "hashtag"
 ```
 
 ## makeItString($url_path)
@@ -235,6 +235,14 @@ $url->getString() => "http://www.web.cz/root/aaa/bbb/a"
 
 ```
 
+## exist()
+check if URL exist as File/Folder
+
+```php
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->exist()	=> 1
+```
+
 ## isFolder()
 check if URL exist as Folder
 
@@ -251,13 +259,6 @@ $url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
 $url->isFile()	=> 1
 ```
 
-## exist()
-check if URL exist as File/Folder
-
-```php
-$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$url->exist()	=> 1
-```
 
 <hr>
 
