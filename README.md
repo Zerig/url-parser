@@ -6,19 +6,19 @@
 $GLOBALS["server_root"] = new \UrlParser\Url("root");		// set root folder as ROOT
 // BOTH variant are possile ↓
 // during constructing URL obj, multiple slashes are transform to ONE
-$GLOBALS["url"] = new \UrlParser\Url(["http", "/www.web.cz/root", "/aaa/bbb", "a.html", "?member=me&age=15", "#hashtag"]);
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb//a.html?member=me&age=15#hashtag");
+$url = new \UrlParser\Url(["http", "/www.web.cz/root", "/aaa/bbb", "a.html", "?member=me&age=15", "#hashtag"]);
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb//a.html?member=me&age=15#hashtag");
 
 // special possibility for TEMPORARY files
-$GLOBALS["url"] = new \UrlParser\Url('C:\xampp\tmp\php8C07.tmp', '\\');
+$url = new \UrlParser\Url('C:\xampp\tmp\php8C07.tmp', '\\');
 
 
-$GLOBALS["url"]->getScheme("string") 	=> "http"
-$GLOBALS["url"]->getHost("string") 	=> "www.web.cz"
-$GLOBALS["url"]->getRoot("string") 	=> "root"
-$GLOBALS["url"]->getPath("string") 	=> "aaa/bbb/a.html"
-$GLOBALS["url"]->getQuery("string") 	=> "?member=me&age=15"
-$GLOBALS["url"]->getFragment("string") 	=> "hashtag"
+$url->getScheme("string") 	=> "http"
+$url->getHost("string") 	=> "www.web.cz"
+$url->getRoot("string") 	=> "root"
+$url->getPath("string") 	=> "aaa/bbb/a.html"
+$url->getQuery("string") 	=> "?member=me&age=15"
+$url->getFragment("string") 	=> "hashtag"
 ```
 
 ## makeItString($url_path)
@@ -43,14 +43,14 @@ $times [int]		How many time<br>
 Remove last part of url PATH. NOT just print, but REMOVE!!!
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
-$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
+$url = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
+$url->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 
-$GLOBALS["url"]->pop();
-$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb"
+$url->pop();
+$url->getString() => "http://www.web.cz/root/aaa/bbb"
 
-$GLOBALS["url"]->pop(3);
-$GLOBALS["url"]->getString() => "http://www.web.cz"
+$url->pop(3);
+$url->getString() => "http://www.web.cz"
 ```
 
 
@@ -61,14 +61,14 @@ $times [int]		How many time<br>
 Remove first part of url PATH. NOT just print, but REMOVE!!!
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 
-$GLOBALS["url"]->shift();
-$GLOBALS["url"]->getString() => "http://www.web.cz/bbb/a.html"
+$url->shift();
+$url->getString() => "http://www.web.cz/bbb/a.html"
 
-$GLOBALS["url"]->shift(3);
-$GLOBALS["url"]->getString() => "http://www.web.cz"
+$url->shift(3);
+$url->getString() => "http://www.web.cz"
 ```
 
 
@@ -78,11 +78,11 @@ $to [string]	changed to this<br>
 Change one part of URL PATH for a new one.
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 
-$GLOBALS["url"].swap("aaa", "ccc");
-$GLOBALS["url"]->getString() => "http://www.web.cz/ccc/bbb/a.html"
+$url.swap("aaa", "ccc");
+$url->getString() => "http://www.web.cz/ccc/bbb/a.html"
 
 ```
 
@@ -106,10 +106,10 @@ $exp [string]	In which form do we want export<br>
 - **getFragment()** - get hastag part: "hashtag"
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 
-$GLOBALS["url"]->getPath() => "ccc/bbb/a.html"
+$url->getPath() => "ccc/bbb/a.html"
 
 ```
 
@@ -119,11 +119,11 @@ $GLOBALS["url"]->getPath() => "ccc/bbb/a.html"
 get the whole URL in string format.
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->addPath("file");			// add PATH URL
-$GLOBALS["url"]->addQuery(["name" => "jerome"]);	// add Query in URL
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->addPath("file");			// add PATH URL
+$url->addQuery(["name" => "jerome"]);	// add Query in URL
 
-$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a/file.html?name=jerome"
+$url->getString() => "http://www.web.cz/root/aaa/bbb/a/file.html?name=jerome"
 
 ```
 
@@ -134,11 +134,11 @@ $GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a/file.html?name
 return number of all folder from ROOT
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->getDepth() => 2
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->getDepth() => 2
 
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
-$GLOBALS["url"]->getDepth() => 3
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
+$url->getDepth() => 3
 
 ```
 
@@ -147,11 +147,11 @@ $GLOBALS["url"]->getDepth() => 3
 return path, which return this url to root
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->linkRoot() => "../../"
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->linkRoot() => "../../"
 
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
-$GLOBALS["url"]->linkRoot() => "../../../"
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
+$url->linkRoot() => "../../../"
 
 ```
 
@@ -163,15 +163,15 @@ $add_part [string | array of strings]
 add items to ROOT part.
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->addPath(["ccc", "ddd"]);
-$GLOBALS["url"]->getPath("string") => "aaa/bbb/a/ccc/ddd.html"
-$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a/ccc/ddd.html"
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->addPath(["ccc", "ddd"]);
+$url->getPath("string") => "aaa/bbb/a/ccc/ddd.html"
+$url->getString() => "http://www.web.cz/root/aaa/bbb/a/ccc/ddd.html"
 
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
-$GLOBALS["url"]->addPath(["ccc", "ddd"]);
-$GLOBALS["url"]->getPath("string") => "aaa/bbb/a/ccc/ddd"
-$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a/ccc/ddd"
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
+$url->addPath(["ccc", "ddd"]);
+$url->getPath("string") => "aaa/bbb/a/ccc/ddd"
+$url->getString() => "http://www.web.cz/root/aaa/bbb/a/ccc/ddd"
 
 ```
 
@@ -181,11 +181,11 @@ $add_part [string | array of strings]
 add items to ROOT part.
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->beforePath(["ccc", "ddd"]);
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->beforePath(["ccc", "ddd"]);
 
-$GLOBALS["url"]->getPath("string") => "ccc/ddd/aaa/bbb/a.html"
-$GLOBALS["url"]->getString() => "http://www.web.cz/root/ccc/ddd/aaa/bbb/a.html"
+$url->getPath("string") => "ccc/ddd/aaa/bbb/a.html"
+$url->getString() => "http://www.web.cz/root/ccc/ddd/aaa/bbb/a.html"
 
 ```
 
@@ -195,32 +195,32 @@ $add_part [key array]
 add items to ROOT part.
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->addQuery(["name" => "jerome", "age=15"]);
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->addQuery(["name" => "jerome", "age=15"]);
 
-$GLOBALS["url"]->getQuery("string") => "?name=jerome&age=15"
-$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html?name=jerome&age=15"
+$url->getQuery("string") => "?name=jerome&age=15"
+$url->getString() => "http://www.web.cz/root/aaa/bbb/a.html?name=jerome&age=15"
 
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html?member=me");
-$GLOBALS["url"]->addQuery(["name" => "jerome", "age=15"]);
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html?member=me");
+$url->addQuery(["name" => "jerome", "age=15"]);
 
-$GLOBALS["url"]->getQuery("string") => "?member=me&name=jerome&age=15"
-$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a.html?member=me&name=jerome&age=15"
+$url->getQuery("string") => "?member=me&name=jerome&age=15"
+$url->getString() => "http://www.web.cz/root/aaa/bbb/a.html?member=me&name=jerome&age=15"
 
 ```
 
 <hr>
 
-## hasFile()
+## hasExtension()
 return 1 if the URL is ending with file: ".../a.html"<br>
 return 0 if the URL is ending onn folder: ".../a"
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->hasFile() => 1
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->hasExtension() => 1
 
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
-$GLOBALS["url"]->hasFile() => 0
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a");
+$url->hasExtension() => 0
 
 ```
 
@@ -228,10 +228,10 @@ $GLOBALS["url"]->hasFile() => 0
 If URL has extension => ".html" it will remove it from path
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->removeExtension();
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->removeExtension();
 
-$GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a"
+$url->getString() => "http://www.web.cz/root/aaa/bbb/a"
 
 ```
 
@@ -239,24 +239,24 @@ $GLOBALS["url"]->getString() => "http://www.web.cz/root/aaa/bbb/a"
 check if URL exist as Folder
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->isFolder()	=> 0
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->isFolder()	=> 0
 ```
 
 ## isFile()
 check if URL exist as File
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->isFile()	=> 1
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->isFile()	=> 1
 ```
 
 ## exist()
 check if URL exist as File/Folder
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->exist()	=> 1
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->exist()	=> 1
 ```
 
 <hr>
@@ -274,23 +274,23 @@ add items to ROOT part.
 - **removeFragment()** - remove hastag part: "hashtag"
 
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html?member=me&age=15");
-$GLOBALS["url"]->removeScheme();
-$GLOBALS["url"]->removeQuery();
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html?member=me&age=15");
+$url->removeScheme();
+$url->removeQuery();
 
-$GLOBALS["url"]->getString() => "www.web.cz/root/aaa/bbb/a.html"
+$url->getString() => "www.web.cz/root/aaa/bbb/a.html"
 ```
 
 ### removePath($path_part)
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$GLOBALS["url"]->removePath(["aaa", "bbb"]);
-$GLOBALS["url"]->getString() => "www.web.cz/root/a.html"
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->removePath(["aaa", "bbb"]);
+$url->getString() => "www.web.cz/root/a.html"
 ```
 
 ### removeQuery($key_array)
 ```php
-$GLOBALS["url"] = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html?member=me&age=15");
-$GLOBALS["url"]->removeQuery(["member"]);
-$GLOBALS["url"]->getString() => "www.web.cz/root/aaa/bbb/a.html?age=15"
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html?member=me&age=15");
+$url->removeQuery(["member"]);
+$url->getString() => "www.web.cz/root/aaa/bbb/a.html?age=15"
 ```

@@ -7,9 +7,9 @@ class Url{
 	// http://localhost/web/o-nas/kontakt.html?clen=ja&vek=15#nadpis
 	public $scheme;		// "http"
 	public $host;		// "localhost"
-	public $root;		// ["web"]
-	public $path;		// ["o-nas", "kontakt.html"]
-	public $query;		// ["clen" => "ja", "vek" => "15"]
+	public $root = [];		// ["web"]
+	public $path = [];		// ["o-nas", "kontakt.html"]
+	public $query = [];		// ["clen" => "ja", "vek" => "15"]
 	public $fragment;	// "nadpis"
 
 	public $sign;		// char of directory separator => usualy "/"
@@ -47,7 +47,7 @@ class Url{
 
 	 * @url_path [string, array of string]
 	 */
-	public function makeItString($url_path){
+	private function makeItString($url_path){
 		$url_array = (is_array($url_path))? $url_path : [$url_path];
 		$merge_url_array = [];
 		$fin_url_array = [];
@@ -168,9 +168,11 @@ class Url{
 	 * @times [int]		How many time
 	 */
 	public function pop($times = 1){
+		$return = end($this->path);
 		for($i = 0; $i < $times; $i++){
 			array_pop($this->path);
 		}
+		return $return;
 	}
 
 	/* PUSH
@@ -179,9 +181,11 @@ class Url{
 	 * @times [int]		How many time
 	 */
 	public function shift($times = 1){
+		$return = $this->path[0];
 		for($i = 0; $i < $times; $i++){
 			array_shift($this->path);
 		}
+		return $return;
 	}
 
 
@@ -293,24 +297,26 @@ class Url{
 
 
 
-	public function hasFile(){
+	public function hasExtension(){
 		return strpos(end($this->path), ".") !== false;
 	}
 
 
 	public function removeExtension(){
 		$name_array = explode(".", end($this->path));
+		$extension = end($this->path);
 		array_pop($name_array);
 		$name = implode(".", $name_array);
 
 		$this->path[count($this->path)-1] = $name;
+		return str_replace($name, "", $extension);
 	}
 
 
 	public function getDepth(){
 		$depth = sizeof($this->path);
 
-		if(self::hasFile()) return $depth - 1;
+		if(self::hasExtension()) return $depth - 1;
 		else    			return $depth;
 	}
 
@@ -328,7 +334,7 @@ class Url{
 
 
 
-	public function isFolder(){
+	public function isDir(){
 		return ( is_dir(self::getString()) );
 	}
 
@@ -337,7 +343,7 @@ class Url{
 	}
 
 	public function exist(){
-		return ( self::isFolder() || self::isFile() );
+		return ( self::isDir() || self::isFile() );
 	}
 
 
@@ -352,7 +358,7 @@ class Url{
 		$string = self::makeItString($add_part);
 		$array = explode($this->sign, $string);
 
-		if(self::hasFile()){
+		if(self::hasExtension()){
 			$i = count($this->path) - 1;
 			$array_file = explode(".", $this->path[$i]);
 			$this->path[$i] = $array_file[0];
