@@ -39,18 +39,24 @@ getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 
 
 ## pop($times)
-$times [int]		How many time<br>
-Remove last part of url PATH. NOT just print, but REMOVE!!!
+- **$times [int]**		How many time
+* **@return [string / array of string]** What was popped
 
+Remove last part of url PATH. NOT just print, but REMOVE!!!\n
 ```php
 $url = new \UrlParser\Url("http://www.web.cz//aaa/bbb/a.html");
 $url->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 
-$url->pop();
+$popped = $url->pop();
 $url->getString() => "http://www.web.cz/root/aaa/bbb"
+$popped => "a.html"
 
-$url->pop(3);
+$popped = $url->pop(3);
 $url->getString() => "http://www.web.cz"
+$popped => [
+	[0] => "bbb",
+	[1] => "aaa"
+]
 ```
 
 
@@ -81,7 +87,7 @@ Change one part of URL PATH for a new one.
 $url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
 $url->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 
-$url.swap("aaa", "ccc");
+$url->swap("aaa", "ccc");
 $url->getString() => "http://www.web.cz/ccc/bbb/a.html"
 
 ```
@@ -117,7 +123,7 @@ $url->getHost("array") => [
 ]
 ```
 ```php
-$url->getPath() => => [
+$url->getPath() => [
 	[0] => "ccc",
 	[1] => "bbb",
 	[2] => "a.html"

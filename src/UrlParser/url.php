@@ -168,11 +168,14 @@ class Url{
 	 * @times [int]		How many time
 	 */
 	public function pop($times = 1){
-		$return = end($this->path);
+		$return = [];
 		for($i = 0; $i < $times; $i++){
-			array_pop($this->path);
+			if(end($this->path)){
+				$return[] = end($this->path);
+				array_pop($this->path);
+			}
 		}
-		return $return;
+		return ($times == 1)? ((isset($return[0]))? $return[0] : null) : $return;
 	}
 
 	/* PUSH
@@ -181,11 +184,14 @@ class Url{
 	 * @times [int]		How many time
 	 */
 	public function shift($times = 1){
-		$return = $this->path[0];
+		$return = [];
 		for($i = 0; $i < $times; $i++){
-			array_shift($this->path);
+			if(isset($this->path[0])){
+				$return[] = $this->path[0];
+				array_shift($this->path);
+			}
 		}
-		return $return;
+		return ($times == 1)? ((isset($return[0]))? $return[0] : null) : $return;
 	}
 
 

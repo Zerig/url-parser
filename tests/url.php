@@ -41,7 +41,50 @@ echo "\n";
 echo '<b>$url->swap("aaa","ddd")</b>'.$url->swap("bbb","dddd")."\n";
 echo '$url->getString() => '.$url->getString()."\n";
 
+echo "<br>---------------------------------------------<br><br>";
+
+$url = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html?member=me&age=15#hashtag");
+echo '$url = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html?member=me&age=15#hashtag")'."\n";
+echo '<b>$url->getString()</b> => '.$url->getString()."\n";
+echo "\n";
+echo '<b>$url->pop(3)</b> => ['."\n";
+foreach($url->pop(3) as $key => $val){
+	echo "	".'['.$key.'] => '.$val."\n";
+}
+echo ']'."\n";
+echo '$url->getString() => '.$url->getString()."\n";
+echo "\n";
+echo '<b>$url->shift(3)</b> => ['."\n";
+foreach($url->shift(3) as $key => $val){
+	echo "	".'['.$key.'] => '.$val."\n";
+}
+echo ']'."\n";
+echo '<b>$url->shift()</b> => '.$url->shift()."\n";
+
+
+echo "<br>---------------------------------------------<br><br>";
+
+$url = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html?member=me&age=15#hashtag");
+echo '$url = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html?member=me&age=15#hashtag")'."\n";
+echo '<b>$url->getString()</b> => '.$url->getString()."\n";
+echo '<b>$url->shift(3)</b> => ['."\n";
+foreach($url->shift(3) as $key => $val){
+	echo "	".'['.$key.'] => '.$val."\n";
+}
+echo ']'."\n";
+echo '$url->getString() => '.$url->getString()."\n";
+echo "\n";
+echo '<b>$url->pop(3)</b> => ['."\n";
+foreach($url->pop(3) as $key => $val){
+	echo "	".'['.$key.'] => '.$val."\n";
+}
+echo ']'."\n";
+echo "\n";
+echo '<b>$url->pop()</b> => '.$url->pop()."\n";
+
+
 echo "<br>---------------------------------------------";
+echo "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 echo "<br>---------------------------------------------<br><br>";
 
 $url = new \UrlParser\Url("http://www.web.cz//root/aaa/bbb/a.html?member=me&age=15#hashtag");
