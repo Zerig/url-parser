@@ -334,7 +334,7 @@ class Url{
 
 
 
-	public function isDir(){
+	public function isFolder(){
 		return ( is_dir(self::getString()) );
 	}
 
@@ -343,7 +343,7 @@ class Url{
 	}
 
 	public function exist(){
-		return ( self::isDir() || self::isFile() );
+		return ( self::isFolder() || self::isFile() );
 	}
 
 
@@ -406,37 +406,80 @@ class Url{
 
 	 * @$key_array [array of string]
 	 */
-	public function removeScheme(){		$this->scheme = null;	}
-	public function removeHost(){		$this->host = null;	}
-	public function removeRoot(){		$this->root = null;	}
-	public function removeFragment(){	$this->fragment = null;	}
+	public function removeScheme(){
+		$return = $this->scheme;
+		$this->scheme = null;
+		return $return;
+	}
+	public function removeHost(){
+		$return = $this->host;
+		$this->host = null;
+		return $return;
+	}
+	/*public function removeRoot(){
+		$return = $this->root;
+		$this->root = null;
+		return $return;
+	}*/
+	public function removeFragment(){
+		$return = $this->fragment;
+		$this->fragment = null;
+		return $return;
+	}
+
+	public function removeRoot($root_part = null){
+		$return = $this->root;
+		if(empty($root_part)) $this->root = null;
+		if(!empty($root_part)){
+			$string_url = self::makeItString($root_part);
+			$string_url = str_replace($string_url, "", self::getRoot("string"));
+			$string_url = self::makeItString($string_url);
+
+			$return = (is_array($root_part))? $root_part : [$root_part];
+			$return = (self::getRoot("string") == $string_url)? [] : $return;
+			self::setPath($string_url);
+		}
+
+		return $return;
+	}
 
 
 	public function removePath($path_part = null){
+		$return = $this->path;
 		if(empty($path_part)) $this->path = null;
 		if(!empty($path_part)){
 			$string_url = self::makeItString($path_part);
 			$string_url = str_replace($string_url, "", self::getPath("string"));
 			$string_url = self::makeItString($string_url);
 
+			$return = (is_array($path_part))? $path_part : [$path_part];
+			$return = (self::getPath("string") == $string_url)? [] : $return;
 			self::setPath($string_url);
 		}
+
+		return $return;
 	}
 
 
 	public function removeQuery($key_array = []){
+		$return = $this->query;
 		if(empty($key_array))		$this->query = null;
 		if(!is_array($key_array))	$key_array = [$key_array];
 
 		if(!empty($this->query)){
+			$return = [];
 			foreach($this->query as $key => $val){
 				foreach($key_array as $remove_key){
-					if($remove_key == $key)	unset($this->query[$key]);	// remove item
+					if($remove_key == $key){
+						$return[$key] = $this->query[$key];
+						unset($this->query[$key]);	// remove item
+
+					}
 				}
 			}
 		}
 
-
+		return $return;
 	}
 
 

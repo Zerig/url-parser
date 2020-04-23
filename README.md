@@ -109,7 +109,23 @@ $exp [string]	In which form do we want export<br>
 $url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
 $url->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 
-$url->getPath() => "ccc/bbb/a.html"
+$url->getHost() => "www.web.cz"
+$url->getHost("string") => "www.web.cz"
+$url->getHost("array") => [
+	[0] => "www.web.cz"
+]
+
+$url->getPath() => => [
+	[0] => "ccc",
+	[1] => "bbb",
+	[2] => "a.html"
+]
+$url->getPath("string") => "ccc/bbb/a.html"
+$url->getPath("array") => [
+	[0] => "ccc",
+	[1] => "bbb",
+	[2] => "a.html"
+]
 
 ```
 
@@ -240,7 +256,7 @@ check if URL exist as File/Folder
 
 ```php
 $url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$url->exist()	=> 1
+$url->exist() => 1
 ```
 
 ## isFolder()
@@ -248,7 +264,7 @@ check if URL exist as Folder
 
 ```php
 $url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$url->isFolder()	=> 0
+$url->isFolder() => 0
 ```
 
 ## isFile()
@@ -256,7 +272,7 @@ check if URL exist as File
 
 ```php
 $url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
-$url->isFile()	=> 1
+$url->isFile() => 1
 ```
 
 
