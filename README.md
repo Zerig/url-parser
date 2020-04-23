@@ -70,11 +70,16 @@ Remove first part of url PATH. NOT just print, but REMOVE!!!
 $url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
 $url->getString() => "http://www.web.cz/root/aaa/bbb/a.html"
 
-$url->shift();
+$shifted = $url->shift();
 $url->getString() => "http://www.web.cz/bbb/a.html"
+$shifted => "aaa"
 
-$url->shift(3);
+$shifted = $url->shift(3);
 $url->getString() => "http://www.web.cz"
+$shifted => [
+	[0] => "bbb",
+	[1] => "a.html"
+]
 ```
 
 
