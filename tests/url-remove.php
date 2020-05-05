@@ -172,3 +172,11 @@ foreach($url->removeQuery(["wrong"]) as $key => $val){
 }
 echo ']'."\n";
 echo '$url->getString() => '.$url->getString()."\n";
+
+echo "<br>---------------------------------------------<br><br>";
+
+$url = new \UrlParser\Url("http://www.web.cz//root/rrr/aaa/bbb/a.html?member=me&age=15#hashtag");
+echo '$url = new \UrlParser\Url("http://www.web.cz//root/rrr/aaa/bbb/a.html?member=me&age=15#hashtag")'."\n";
+echo "\n";
+echo '<b>$url->removeExtension()</b> => '.$url->removeExtension()."\n";
+echo '$url->getString() => '.$url->getString()."\n";

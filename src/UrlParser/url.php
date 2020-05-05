@@ -307,15 +307,21 @@ class Url{
 		return strpos(end($this->path), ".") !== false;
 	}
 
+	public function getExtension(){
+		$name_array = explode(".", end($this->path));
+		return end($name_array);
+	}
+
 
 	public function removeExtension(){
 		$name_array = explode(".", end($this->path));
-		$extension = end($this->path);
+		$extension = end($name_array);
 		array_pop($name_array);
 		$name = implode(".", $name_array);
 
 		$this->path[count($this->path)-1] = $name;
-		return str_replace($name, "", $extension);
+		str_replace($name, "", $extension);
+		return $extension;
 	}
 
 

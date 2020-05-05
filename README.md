@@ -253,6 +253,16 @@ $url->hasExtension() => 0
 
 ```
 
+## getExtension()
+Get extension of URL
+
+```php
+$url = new \UrlParser\Url("http://www.web.cz/root/aaa/bbb/a.html");
+$url->getExtension() => "html"
+
+```
+
+
 ## removeExtension()
 If URL has extension => ".html" it will remove it from path
 

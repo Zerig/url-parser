@@ -105,3 +105,7 @@ foreach($url->getFragment("array") as $key => $val){
 	echo "	".'['.$key.'] => '.$val."\n";
 }
 echo ']'."\n";
+
+echo "<br>---------------------------------------------<br><br>";
+
+echo '<b>$url->getExtension()</b> => '.$url->getExtension()."\n";
